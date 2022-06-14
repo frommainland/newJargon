@@ -1,25 +1,18 @@
-import logo from './logo.svg';
+import "the-new-css-reset/css/reset.css"
 import './App.css';
 
+import Cover from './component/Cover';
+import Jargon from "./component/Jargon";
+
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Jargon />
+            <Cover />
+
+        </div>
+    );
 }
 
 export default App;

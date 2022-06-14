@@ -1,0 +1,101 @@
+.cover-wrap {
+	width: 50%;
+	height: 100vh;
+	position: fixed;
+	background-color: #212121;
+	border: solid 1rem white;
+	border-right: solid 0.5rem white;
+	.bird-wrap {
+		.container {
+			overflow: hidden;
+			white-space: nowrap;
+			margin-bottom: 1rem;
+		}
+
+		.scrolling {
+			animation: marquee 50s linear infinite;
+			display: inline-block;
+		}
+
+		.scrolling2 {
+			animation: marquee 50s linear infinite;
+			display: inline-block;
+			animation-direction: reverse;
+		}
+
+		.bird {
+			width: calc(80px + 8vw);
+			height: calc(80px + 8vw);
+			display: inline-block;
+			margin-right: 16px;
+			background-size: cover;
+			border-radius: 0.5rem;
+		}
+
+		.circle {
+			border-radius: 50%;
+		}
+
+		.top-half {
+			border-top-left-radius: 50%;
+			border-top-right-radius: 50%;
+		}
+
+		.bottom-half {
+			border-bottom-left-radius: 50%;
+			border-bottom-right-radius: 50%;
+		}
+
+		.left-half {
+			border-top-left-radius: 50%;
+			border-bottom-left-radius: 50%;
+		}
+
+		.right-half {
+			border-top-right-radius: 50%;
+			border-bottom-right-radius: 50%;
+		}
+
+		.square {
+		}
+
+		@keyframes marquee {
+			from {
+				transform: translateX(0);
+			}
+			to {
+				transform: translateX(-100%);
+			}
+		}
+	}
+	.text {
+		padding: 1rem;
+		max-width: 60ch;
+		min-width: 20ch;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		.text-position {
+			font-weight: 600;
+			color: #ded6cf;
+			text-align: center;
+			h3 {
+				font-family: 'SF Compact';
+				font-size: 18px;
+				line-height: 21px;
+				margin-bottom: 8px;
+			}
+			h1 {
+				font-size: 32px;
+				line-height: calc(45 / 32);
+				margin-bottom: 40px;
+			}
+			p {
+				font-size: 18px;
+				line-height: calc(25 / 18);
+				margin-bottom: 10px;
+			}
+		}
+	}
+}
