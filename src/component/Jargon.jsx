@@ -146,14 +146,39 @@ const Item = (props) => {
 				<motion.div
 					transition={{
 						layout: listAnimation,
+						delay: isOpen ? 0.2 : 0,
 					}}
+					initial={{ opacity: 0 }}
+					animate={{ opacity: isOpen ? 1 : 0 }}
 					layout
 					className="close-button"
-					whileHover={{ backgroundColor: '#EDEDEB' }}
+					whileHover={{
+						backgroundColor: '#EDEDEB',
+						width: 90,
+						height: 90,
+					}}
 					onClick={() => {
 						setIsOpen(false)
 						props.h1Clicked(false)
-					}}></motion.div>
+					}}>
+					<motion.svg
+						layout
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						width={24}>
+						<motion.path
+							d="M18 6 6 18M6 6l12 12"
+							stroke="#86868B"
+							strokeWidth="4"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							whileHover={{
+								stroke: '#86868B',
+							}}
+						/>
+					</motion.svg>
+				</motion.div>
 			</div>
 			<AnimatePresence>
 				{isOpen && <Content textData={props.data} />}
@@ -250,7 +275,7 @@ const Jargon = () => {
 	const { scrollY, scrollYProgress } = useViewportScroll()
 	const bgColor = useTransform(
 		scrollYProgress,
-		[0, -0.25, -0.5],
+		[0, -0.5, -0.9],
 		[bgOrange, bgYellow, bgBlue]
 	)
 

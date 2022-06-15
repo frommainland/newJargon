@@ -14,7 +14,7 @@
 	}
 	ul {
 		// perspective: 800px;
-        // perspective-origin: 50% 50%;
+		// perspective-origin: 50% 50%;
 		li {
 			background-color: #f7f7f5;
 			position: relative;
@@ -37,6 +37,8 @@
 					background: #ffffff;
 					border-radius: 64px;
 					margin-right: 56px;
+					display: flex;
+					justify-content: center;
 				}
 			}
 
