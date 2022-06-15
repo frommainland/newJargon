@@ -104,7 +104,6 @@ const Cover = () => {
 		return () => window.removeEventListener('resize', updateHeight)
 	}, [])
 
-	console.log(height)
 	return (
 		<div className="cover-wrap">
 			<div className="bird-wrap" ref={ref}>
