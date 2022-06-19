@@ -1,5 +1,5 @@
 import './Jargon.scss'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
 	motion,
 	AnimatePresence,
@@ -84,6 +84,15 @@ const Ranking = (props) => {
 					)
 				})}
 			</div>
+		</motion.div>
+	)
+}
+
+const Source = (props) => {
+	return (
+		<motion.div variants={props.variants} className="source-wrap">
+			<img src={require(`../image/${props.profile}.jpg`)} alt="profile" />
+			<span>{props.text}</span>
 		</motion.div>
 	)
 }
@@ -246,6 +255,16 @@ const Content = (props) => {
 				text={props.textData.meaning}
 			/>
 			<Origin variants={item} key="Origin" text={props.textData.origin} />
+
+			{props.textData.hasSource && (
+				<Source
+					variants={item}
+					key="Source"
+					text={props.textData.source}
+					profile={props.textData.sourceProfile}
+				/>
+			)}
+
 			<Ranking
 				comm={props.textData.rankingCommunication}
 				understand={props.textData.rankingUnderstanding}
