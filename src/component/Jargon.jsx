@@ -1,5 +1,5 @@
 import './Jargon.scss'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import {
 	motion,
 	AnimatePresence,
@@ -16,7 +16,7 @@ import data from '../data/data'
 
 const Example = (props) => {
 	return (
-		<motion.div variants={props.variants}>
+		<motion.div variants={props.variants} className="example">
 			<h3 className="content-subheader">例句</h3>
 			<hr />
 			<p className="content-text">{props.text}</p>
@@ -36,7 +36,7 @@ const Explaination = (props) => {
 
 const Origin = (props) => {
 	return (
-		<motion.div variants={props.variants}>
+		<motion.div variants={props.variants} className="origin">
 			<h3 className="content-subheader">来源</h3>
 			<hr />
 			<p className="content-text">{props.text}</p>
@@ -111,12 +111,23 @@ const Item = (props) => {
 	const [isOpen, setIsOpen] = useState(false)
 
 	const listAnimation = {
-		// duration: isOpen ? 1 : 0.35,
 		duration: 1,
 		ease: smooth,
 	}
 
-	// const rotateX = useTransform(scrollYProgress, [0, -0.5], [-12, 12])
+	//get h1 height
+	const [height, setHeight] = useState(0)
+	const ref = useRef(null)
+
+	useEffect(() => {
+		const updateHeight = () => {
+			setHeight(ref.current.clientHeight)
+		}
+		window.addEventListener('resize', updateHeight)
+		updateHeight()
+		return () => window.removeEventListener('resize', updateHeight)
+	}, [])
+
 	return (
 		<motion.li
 			layout
@@ -141,6 +152,7 @@ const Item = (props) => {
 			}}>
 			<div className="top-nav">
 				<motion.h1
+					ref={ref}
 					transition={{
 						layout: listAnimation,
 					}}
@@ -149,6 +161,7 @@ const Item = (props) => {
 						setIsOpen(true)
 						props.h1Clicked(true)
 						props.getIndex(props.index)
+						props.seth1Height(height)
 					}}>
 					{props.data.name}
 				</motion.h1>
@@ -190,7 +203,13 @@ const Item = (props) => {
 				</motion.div>
 			</div>
 			<AnimatePresence>
-				{isOpen && <Content textData={props.data} />}
+				{isOpen && (
+					<Content
+						textData={props.data}
+						key={props.index}
+						h1Height={height}
+					/>
+				)}
 			</AnimatePresence>
 		</motion.li>
 	)
@@ -230,7 +249,7 @@ const Content = (props) => {
 			opacity: 0,
 			y: 300,
 			transition: {
-				duration: 0.5,
+				duration: 0.35,
 				ease: smooth,
 			},
 		},
@@ -238,6 +257,9 @@ const Content = (props) => {
 
 	return (
 		<motion.div
+			style={{
+				height: 'calc(100vh - ' + props.h1Height + 'px)',
+			}}
 			layout
 			className="content-wrap"
 			variants={container}
@@ -283,10 +305,10 @@ const Jargon = () => {
 	const bgYellow = `hsla(34,60%,39%,1)`
 	const bgBlue = `hsla(207,40%,30%,1)`
 
-	//h1“沟对”文字的高度
-	const h1Height = 144
 	//一共多少个h1
 	const num_lists = items.length
+	//h1“沟对”文字的高度
+	const [h1Height, seth1Height] = useState(0)
 
 	const [clicked, setClicked] = useState(false)
 	const [index, setIndex] = useState(0)
@@ -330,6 +352,7 @@ const Jargon = () => {
 								h1Clicked={setClicked}
 								getIndex={setIndex}
 								data={data[index]}
+								seth1Height={seth1Height}
 							/>
 						)
 					})}

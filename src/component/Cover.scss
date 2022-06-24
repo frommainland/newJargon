@@ -1,15 +1,27 @@
+@media screen and (max-width: 60em) {
+	.cover-wrap {
+		display: none;
+	}
+}
+
+@media screen and (max-height: 40em) {
+	.bird-wrap {
+		display: none;
+	}
+}
+
 .cover-wrap {
 	width: 50%;
 	height: 100vh;
 	position: fixed;
 	background-color: #212121;
-	border: solid 1rem white;
-	border-right: solid 0.5rem white;
+	border: solid 1em white;
+	border-right: solid 0.5em white;
 	.bird-wrap {
 		.container {
 			overflow: hidden;
 			white-space: nowrap;
-			margin-bottom: 1rem;
+			margin-bottom: 1em;
 		}
 
 		.scrolling {
@@ -24,12 +36,12 @@
 		}
 
 		.bird {
-			width: calc(80px + 8vw);
-			height: calc(80px + 8vw);
+			width: calc(1em + 2vw + 16vh);
+			height: calc(1em + 2vw + 16vh);
 			display: inline-block;
-			margin-right: 16px;
+			margin-right: 1em;
 			background-size: cover;
-			border-radius: 0.5rem;
+			border-radius: 0.5em;
 		}
 
 		.circle {
@@ -69,7 +81,7 @@
 		}
 	}
 	.text {
-		padding: 1rem;
+		padding: 1em;
 		max-width: 60ch;
 		min-width: 20ch;
 		margin: 0 auto;
@@ -81,20 +93,22 @@
 			color: #ded6cf;
 			text-align: center;
 			h3 {
-				font-family: 'SF Compact';
-				font-size: 18px;
-				line-height: 21px;
-				margin-bottom: 8px;
+				font-family: 'SF Compact', 'SF Pro Text', Arial, Helvetica,
+					sans-serif;
+				font-size: 1.125rem;
+				line-height: 1.16;
+				margin-bottom: 0.5em;
+				font-weight: 700;
 			}
 			h1 {
-				font-size: 32px;
-				line-height: calc(45 / 32);
-				margin-bottom: 40px;
+				font-size: 2rem;
+				line-height: 1.4;
+				margin-bottom: 1.5em;
 			}
 			p {
-				font-size: 18px;
-				line-height: calc(25 / 18);
-				margin-bottom: 10px;
+				font-size: 1.125rem;
+				line-height: 1.4;
+				margin-bottom: 0.625em;
 			}
 		}
 	}
