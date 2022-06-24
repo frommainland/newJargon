@@ -7,6 +7,7 @@ import {
 	useTransform,
 	useViewportScroll,
 	useMotionTemplate,
+	useElementScroll,
 } from 'framer-motion'
 
 import useScrollPosition from '../hook/useScrollPosition'
@@ -304,6 +305,7 @@ const Jargon = () => {
 	const bgOrange = `hsla(16,61%,56%,1)`
 	const bgYellow = `hsla(34,60%,39%,1)`
 	const bgBlue = `hsla(207,40%,30%,1)`
+	const bgGreen = `hsla(140,60%,40%,1)`
 
 	//一共多少个h1
 	const num_lists = items.length
@@ -316,9 +318,12 @@ const Jargon = () => {
 	const { scrollY, scrollYProgress } = useViewportScroll()
 	const bgColor = useTransform(
 		scrollYProgress,
-		[0, -0.5, -0.9],
-		[bgOrange, bgYellow, bgBlue]
+		[0, -0.5, -0.9, -1.5],
+		[bgOrange, bgYellow, bgBlue, bgGreen],
+		{ clamp: false }
 	)
+
+	console.log(scrollYProgress.current)
 
 	// const perspective = useTransform(scrollYProgress, [0, -0.4], [800, 2000])
 	const origin = useTransform(scrollYProgress, [0, -0.9], [50, 100])
