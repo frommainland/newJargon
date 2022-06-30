@@ -188,8 +188,7 @@ const Item = (props) => {
 						layout
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24"
-						width={24}>
+						viewBox="0 0 24 24">
 						<motion.path
 							d="M18 6 6 18M6 6l12 12"
 							stroke="#86868B"
@@ -326,7 +325,7 @@ const Jargon = () => {
 	console.log(scrollYProgress.current)
 
 	// const perspective = useTransform(scrollYProgress, [0, -0.4], [800, 2000])
-	const origin = useTransform(scrollYProgress, [0, -0.9], [50, 100])
+	const origin = useTransform(scrollYProgress, [0, -1], [50, 100])
 	const originTemp = useMotionTemplate`50% ${origin}%`
 
 	return (
@@ -337,11 +336,13 @@ const Jargon = () => {
 			<LayoutGroup>
 				<motion.ul
 					style={{
-						perspective: 1000,
+						perspective: 700,
 						perspectiveOrigin: originTemp,
 					}}
 					animate={{
-						y: clicked ? index * h1Height * -1 + scrollPosition : 0,
+						y: clicked
+							? index * h1Height * -1 + scrollPosition - 16 * 2
+							: 0,
 					}}
 					transition={
 						clicked
